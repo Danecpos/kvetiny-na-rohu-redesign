@@ -98,11 +98,11 @@ section{padding:72px 0;}
 .hero-actions{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
 .hero-note{margin-top:18px;font-size:.9rem;color:var(--ink-soft);}
 .hero-note .stars{color:#c98a3a;letter-spacing:1px;}
-.hero-photo{border-radius:10px;overflow:hidden;box-shadow:0 12px 28px -14px rgba(40,35,25,.28);aspect-ratio:4/5;}
+.hero-photo{border-radius:8px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;}
 .hero-photo img{width:100%;height:100%;object-fit:cover;}
 
 /* ---------------- photo frame (about / teaser) ---------------- */
-.photo-frame{border-radius:10px;overflow:hidden;box-shadow:0 12px 26px -14px rgba(40,35,25,.25);aspect-ratio:4/5;}
+.photo-frame{border-radius:8px;overflow:hidden;border:1px solid var(--line);aspect-ratio:4/5;}
 .photo-frame img{width:100%;height:100%;object-fit:cover;}
 
 .teaser{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center;}
@@ -118,13 +118,12 @@ section{padding:72px 0;}
 /* ---------------- gallery ---------------- */
 .gallery{background:var(--cream2);}
 .grid{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.grid figure{border-radius:10px;overflow:hidden;background:var(--card);box-shadow:0 10px 22px -16px rgba(40,35,25,.25);}
+.grid figure{border-radius:8px;overflow:hidden;background:var(--card);border:1px solid var(--line);}
 .grid figure.wide{grid-column:span 2;}
 .grid figure.hide{display:none;}
 .photo-box{aspect-ratio:4/5;overflow:hidden;}
 .grid figure.wide .photo-box{aspect-ratio:16/10;}
-.photo-box img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease;}
-.grid figure:hover .photo-box img{transform:scale(1.04);}
+.photo-box img{width:100%;height:100%;object-fit:cover;}
 figcaption{padding:10px 12px 12px;font-size:.86rem;color:var(--ink-soft);}
 
 .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px;}
@@ -148,14 +147,14 @@ figcaption{padding:10px 12px 12px;font-size:.86rem;color:var(--ink-soft);}
 .stars{color:#e3b45a;letter-spacing:1px;}
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:32px;}
 .rev-grid.full{grid-template-columns:repeat(2,1fr);}
-.rev-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:26px;}
+.rev-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:26px;}
 .rev-card p{margin-top:12px;line-height:1.6;}
 .rev-name{margin-top:16px;font-size:.86rem;color:rgba(255,255,255,.7);}
 .rating-badge{display:inline-flex;align-items:center;gap:10px;margin-top:24px;font-size:.92rem;}
 
 /* ---------------- contact ---------------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:32px;align-items:stretch;}
-.info-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:30px;}
+.info-card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:30px;}
 .info-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);}
 .info-row:last-child{border-bottom:none;}
 .info-row b{display:block;font-size:.98rem;}
@@ -163,7 +162,7 @@ figcaption{padding:10px 12px 12px;font-size:.86rem;color:var(--ink-soft);}
 .hours-table{width:100%;margin-top:6px;font-size:.92rem;color:var(--ink-soft);}
 .hours-table td{padding:3px 0;}
 .hours-table td:last-child{text-align:right;color:var(--ink);}
-.map-frame{border-radius:10px;overflow:hidden;border:1px solid var(--line);min-height:320px;}
+.map-frame{border-radius:8px;overflow:hidden;border:1px solid var(--line);min-height:320px;}
 .map-frame iframe{width:100%;height:100%;min-height:320px;border:0;}
 
 .contact-strip{background:var(--cream2);}
@@ -183,11 +182,11 @@ footer a:hover{color:#fff;}
 
 .float-order{
   position:fixed;right:22px;bottom:22px;z-index:60;
-  background:var(--green);color:#fff;width:52px;height:52px;border-radius:50%;
+  background:var(--green);color:#fff;width:50px;height:50px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;font-size:1.2rem;
-  box-shadow:0 10px 22px -8px rgba(0,0,0,.35);transition:transform .2s ease;
+  transition:background .2s ease;
 }
-.float-order:hover{background:var(--green-dark);transform:scale(1.05);}
+.float-order:hover{background:var(--green-dark);}
 
 /* ---------------- responsive ---------------- */
 @media(max-width:900px){
