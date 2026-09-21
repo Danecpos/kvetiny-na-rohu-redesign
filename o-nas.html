@@ -13,25 +13,21 @@
 <body>
 
 <header id="site-nav">
-  <a href="index.html" class="nav-mark"><img src="images/logo.jpg" alt="Květiny na rohu logo"></a>
-  <div class="nav-word">Květiny na rohu — Josefov</div>
-  <nav>
-    <a href="index.html">Domů</a>
-    <a href="o-nas.html" class="active">O nás</a>
-    <a href="tvorba.html">Tvorba</a>
-    <a href="recenze.html">Recenze</a>
-    <a href="kontakt.html">Kontakt</a>
-  </nav>
-  <a href="tel:+420605584163" class="nav-call">📞</a>
-</header>
-
-<div id="site-nav-mobile">
-  <a href="index.html" class="m-brand"><img src="images/logo.jpg" alt=""> Květiny na rohu</a>
-  <div style="display:flex;align-items:center;gap:16px;">
-    <a href="tel:+420605584163" class="m-call">📞</a>
-    <label for="mnav-toggle" class="m-burger"><span></span><span></span><span></span></label>
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand"><img src="images/logo.jpg" alt="Květiny na rohu logo"><span>Květiny <em>na rohu</em></span></a>
+    <nav class="nav-links">
+      <a href="index.html"><span class="n">01</span>Domů</a>
+      <a href="o-nas.html" class="active"><span class="n">02</span>O nás</a>
+      <a href="tvorba.html"><span class="n">03</span>Tvorba</a>
+      <a href="recenze.html"><span class="n">04</span>Recenze</a>
+      <a href="kontakt.html"><span class="n">05</span>Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:+420605584163" class="nav-call">📞 605 584 163</a>
+      <label for="mnav-toggle" class="m-burger"><span></span><span></span><span></span></label>
+    </div>
   </div>
-</div>
+</header>
 <input type="checkbox" id="mnav-toggle">
 <div id="mobile-drop">
   <a href="index.html">Domů</a>
