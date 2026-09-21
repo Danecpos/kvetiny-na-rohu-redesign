@@ -7,35 +7,52 @@
 <meta name="description" content="Kontakt na Květiny na rohu — nám. B. Němcové 145, Jaroměř – Josefov. Telefon 605 584 163.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<canvas id="petals"></canvas>
-
-<header id="site-header">
-  <a href="index.html" class="brand"><img src="images/logo.jpg" alt="Květiny na rohu logo"> Květiny <span style="opacity:.65;font-size:.7em;margin-left:4px;">na rohu</span></a>
+<header id="site-nav">
+  <a href="index.html" class="nav-mark"><img src="images/logo.jpg" alt="Květiny na rohu logo"></a>
+  <div class="nav-word">Květiny na rohu — Josefov</div>
   <nav>
     <a href="index.html">Domů</a>
     <a href="o-nas.html">O nás</a>
-    <a href="tvorba.html">Naše tvorba</a>
+    <a href="tvorba.html">Tvorba</a>
     <a href="recenze.html">Recenze</a>
     <a href="kontakt.html" class="active">Kontakt</a>
   </nav>
-  <a href="tel:+420605584163" class="nav-cta">Zavolat</a>
+  <a href="tel:+420605584163" class="nav-call">📞</a>
 </header>
+
+<div id="site-nav-mobile">
+  <a href="index.html" class="m-brand"><img src="images/logo.jpg" alt=""> Květiny na rohu</a>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="tel:+420605584163" class="m-call">📞</a>
+    <label for="mnav-toggle" class="m-burger"><span></span><span></span><span></span></label>
+  </div>
+</div>
+<input type="checkbox" id="mnav-toggle">
+<div id="mobile-drop">
+  <a href="index.html">Domů</a>
+  <a href="o-nas.html">O nás</a>
+  <a href="tvorba.html">Naše tvorba</a>
+  <a href="recenze.html">Recenze</a>
+  <a href="kontakt.html" class="active">Kontakt</a>
+</div>
+
+<main>
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="eyebrow">Kontakt</div>
+    <div class="index-label">Vzorek č. 05 · Kontakt</div>
     <h1>Kde nás najdete</h1>
     <p>Na rohu náměstí B. Němcové v jaroměřském Josefově — zastavte se, nebo si zavolejte předem.</p>
     <div class="crumbs"><a href="index.html">Domů</a><span>/</span>Kontakt</div>
   </div>
 </section>
 
-<section class="contact" style="padding-top:50px;">
+<section class="entry" style="border-top:none;padding-top:20px;">
   <div class="wrap">
     <div class="contact-grid">
       <div class="info-card reveal">
@@ -52,7 +69,7 @@
           <div><b><a href="https://www.instagram.com/kvetinyna.rohu/" target="_blank" rel="noopener">@kvetinyna.rohu</a></b><span>Novinky a fotky z dílny</span></div>
         </div>
         <div class="info-row" style="display:block;">
-          <div style="display:flex;gap:18px;">
+          <div style="display:flex;gap:16px;">
             <div class="ico">🕐</div>
             <b style="align-self:center;">Otevírací doba</b>
           </div>
@@ -62,7 +79,7 @@
             <tr><td>Neděle</td><td>Zavřeno</td></tr>
           </table>
         </div>
-        <div style="margin-top:26px;"><a href="tel:+420605584163" class="btn btn-solid" style="width:100%;justify-content:center;">📞 Zavolat 605 584 163</a></div>
+        <div style="margin-top:24px;"><a href="tel:+420605584163" class="btn btn-solid" style="width:100%;justify-content:center;">📞 Zavolat 605 584 163</a></div>
       </div>
       <div class="map-frame reveal">
         <iframe src="https://www.google.com/maps?q=Kv%C4%9Btiny+Hana+Mal%C3%A1+KV%C4%9ATINY+NA+ROHU+n%C3%A1m.+B.+N%C4%9Bmcov%C3%A9+145+Jarom%C4%9B%C5%99&output=embed" loading="lazy" allowfullscreen></iframe>
@@ -72,11 +89,12 @@
 </section>
 
 <footer>
+  <div class="foot-ghost">Josefov</div>
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="foot-brand"><img src="images/logo.jpg" alt="" style="width:34px;height:34px;border-radius:50%;"> Květiny na rohu</div>
-        <p style="max-width:280px;font-size:.85rem;color:#a89fb0;">Rodinné květinářství na rohu náměstí B. Němcové v jaroměřském Josefově.</p>
+        <div class="foot-brand"><img src="images/logo.jpg" alt=""> Květiny na rohu</div>
+        <p style="max-width:280px;font-family:'Space Mono',monospace;font-size:.78rem;line-height:1.6;color:rgba(241,234,217,.5);">Rodinné květinářství na rohu náměstí B. Němcové v jaroměřském Josefově.</p>
       </div>
       <div class="foot-col">
         <h4>Stránky</h4>
@@ -101,8 +119,9 @@
   </div>
 </footer>
 
-<a href="tel:+420605584163" class="float-order">📞 Zavolat</a>
+<a href="tel:+420605584163" class="float-order">📞</a>
 
+</main>
 <script src="js/main.js"></script>
 </body>
 </html>

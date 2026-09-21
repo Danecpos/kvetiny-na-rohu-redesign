@@ -7,91 +7,120 @@
 <meta name="description" content="Květinářství Hana Malá – Květiny na rohu. Čerstvé řezané květiny, svatební a smuteční vazba, dekorace. Josefov, Jaroměř.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<canvas id="petals"></canvas>
-
-<header id="site-header">
-  <a href="index.html" class="brand"><img src="images/logo.jpg" alt="Květiny na rohu logo"> Květiny <span style="opacity:.65;font-size:.7em;margin-left:4px;">na rohu</span></a>
+<header id="site-nav">
+  <a href="index.html" class="nav-mark"><img src="images/logo.jpg" alt="Květiny na rohu logo"></a>
+  <div class="nav-word">Květiny na rohu — Josefov</div>
   <nav>
     <a href="index.html" class="active">Domů</a>
     <a href="o-nas.html">O nás</a>
-    <a href="tvorba.html">Naše tvorba</a>
+    <a href="tvorba.html">Tvorba</a>
     <a href="recenze.html">Recenze</a>
     <a href="kontakt.html">Kontakt</a>
   </nav>
-  <a href="tel:+420605584163" class="nav-cta">Zavolat</a>
+  <a href="tel:+420605584163" class="nav-call">📞</a>
 </header>
+
+<div id="site-nav-mobile">
+  <a href="index.html" class="m-brand"><img src="images/logo.jpg" alt=""> Květiny na rohu</a>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="tel:+420605584163" class="m-call">📞</a>
+    <label for="mnav-toggle" class="m-burger"><span></span><span></span><span></span></label>
+  </div>
+</div>
+<input type="checkbox" id="mnav-toggle">
+<div id="mobile-drop">
+  <a href="index.html" class="active">Domů</a>
+  <a href="o-nas.html">O nás</a>
+  <a href="tvorba.html">Naše tvorba</a>
+  <a href="recenze.html">Recenze</a>
+  <a href="kontakt.html">Kontakt</a>
+</div>
+
+<main>
 
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="eyebrow">Josefov · Jaroměř</div>
-      <h1>Kytice, které mají<br><em>svůj vlastní styl.</em></h1>
+      <div class="hero-ghost">01</div>
+      <div class="index-label">Vzorek č. 01 · Josefov, Jaroměř</div>
+      <h1>Kytice, které mají<br><em>svůj vlastní tvar.</em></h1>
       <p>Rodinné květinářství na rohu náměstí B. Němcové. Čerstvé řezané květiny, svatební a smuteční vazba i drobné dekorace — ušité na míru přímo na počkání.</p>
       <div class="hero-actions">
         <a href="tel:+420605584163" class="btn btn-solid">📞 605 584 163</a>
         <a href="tvorba.html" class="btn btn-ghost">Prohlédnout tvorbu</a>
       </div>
       <div class="hero-stats">
-        <div><b>od 1996</b><span>tradice na rohu</span></div>
+        <div><b>1996</b><span>na rohu od</span></div>
         <div><b>4,5 / 5</b><span>17 recenzí Google</span></div>
         <div><b>6 dní</b><span>otevřeno v týdnu</span></div>
       </div>
     </div>
     <div class="hero-art">
-      <span class="hero-blob b1"></span>
-      <span class="hero-blob b2"></span>
-      <div class="hero-photo-frame">
-        <img src="images/photo_jul21_2023.jpg" alt="Srdcová vazba z červených a bílých růží — Květiny na rohu">
+      <div class="specimen">
+        <div class="specimen-photo"><img src="images/photo_jul21_2023.jpg" alt="Srdcová vazba z červených a bílých růží — Květiny na rohu"></div>
+        <div class="specimen-tag"><span>Vazba · <b>Růže &amp; hortenzie</b></span><span>21/07</span></div>
       </div>
-      <div class="hero-tag-float">Ruční vazba<br>na počkání</div>
       <div class="hero-badge">
         <div class="stars">★★★★★</div>
-        <div><b>4,5</b><span>Google, 17 recenzí</span></div>
+        <b>4,5</b>
+        <span>Google, 17 recenzí</span>
       </div>
     </div>
   </div>
-  <div class="scroll-cue"><span></span>Objevit</div>
+  <div class="scroll-cue"><span></span>Rolujte dál</div>
 </section>
 
-<section class="about">
+<section class="entry" id="about">
   <div class="wrap teaser">
     <div class="teaser-photo reveal">
-      <img src="images/photo_jul18_2023.jpg" alt="Výloha Květiny na rohu v Josefově">
+      <div class="specimen">
+        <div class="specimen-photo"><img src="images/photo_jul18_2023.jpg" alt="Výloha Květiny na rohu v Josefově"></div>
+        <div class="specimen-tag"><span>Provozovna · <b>nám. B. Němcové</b></span><span>Josefov</span></div>
+      </div>
     </div>
     <div class="reveal">
-      <div class="tag">O nás</div>
+      <div class="index-label">Vzorek č. 02 · O nás</div>
       <h2 class="sec-title">Kousek Josefova, který voní květinami</h2>
       <p class="sec-lede">Najdete nás přímo na rohu náměstí B. Němcové v jaroměřském Josefově. Vážeme kytice s citem pro kombinaci barev a tvarů — pro radost, na svatbu i jako smuteční vazbu. Bez e-shopu, stačí zajít nebo zavolat.</p>
-      <div style="margin-top:28px;"><a href="o-nas.html" class="link-more">Více o nás →</a></div>
+      <div style="margin-top:26px;"><a href="o-nas.html" class="link-more">Více o nás →</a></div>
     </div>
   </div>
 </section>
 
-<section class="gallery">
+<section class="entry" id="gallery">
   <div class="wrap">
-    <div class="sec-head reveal">
+    <div class="catalog-head reveal">
       <div>
-        <div class="tag">Naše tvorba</div>
+        <div class="index-label">Vzorek č. 03 · Naše tvorba</div>
         <h2 class="sec-title">Pár kytic z poslední doby</h2>
       </div>
       <a href="tvorba.html" class="link-more">Zobrazit celou galerii →</a>
     </div>
     <div class="grid reveal-stagger">
-      <figure class="wide"><img src="images/photo_oct14_2024.jpg" alt="Podzimní chryzantémy před prodejnou"><figcaption>Podzimní výzdoba prodejny</figcaption></figure>
-      <figure><img src="images/photo_feb14_2024.jpg" alt="Kytice z červených růží"><figcaption>Valentýnská kytice</figcaption></figure>
-      <figure><img src="images/photo_sep25_2024.jpg" alt="Věnec z přírodních materiálů"><figcaption>Podzimní věnec</figcaption></figure>
+      <figure class="wide">
+        <div class="frame"><div class="photo-box"><img src="images/photo_oct14_2024.jpg" alt="Podzimní chryzantémy před prodejnou"></div></div>
+        <figcaption><span>Podzimní výzdoba prodejny</span><span>10/24</span></figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><div class="photo-box"><img src="images/photo_feb14_2024.jpg" alt="Kytice z červených růží"></div></div>
+        <figcaption><span>Valentýnská kytice</span><span>02/24</span></figcaption>
+      </figure>
+      <figure>
+        <div class="frame"><div class="photo-box"><img src="images/photo_sep25_2024.jpg" alt="Věnec z přírodních materiálů"></div></div>
+        <figcaption><span>Podzimní věnec</span><span>09/24</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
-<section class="reviews">
+<section class="entry reviews" id="reviews" style="border-top:none;">
   <div class="wrap">
-    <div class="tag reveal">Recenze</div>
+    <div class="index-label reveal">Vzorek č. 04 · Recenze</div>
     <h2 class="sec-title reveal">Co říkají zákazníci</h2>
     <div class="rev-grid reveal-stagger">
       <div class="rev-card">
@@ -112,14 +141,14 @@
     </div>
     <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;">
       <div class="rating-badge reveal">⭐ 4,5 / 5 · 17 recenzí na Google</div>
-      <a href="recenze.html" class="link-more reveal" style="color:#fff;border-color:rgba(255,255,255,.5);">Všechny recenze →</a>
+      <a href="recenze.html" class="link-more reveal" style="color:var(--paper);border-color:rgba(241,234,217,.5);">Všechny recenze →</a>
     </div>
   </div>
 </section>
 
-<section class="contact-strip">
+<section class="entry contact-strip" id="contact">
   <div class="wrap">
-    <div class="tag reveal">Kontakt</div>
+    <div class="index-label reveal">Vzorek č. 05 · Kontakt</div>
     <h2 class="sec-title reveal">Zastavte se na rohu</h2>
     <div class="strip-grid reveal-stagger">
       <div class="strip-item"><div class="ico">📍</div><div><b>nám. B. Němcové 145</b><span>Jaroměř – Josefov</span></div></div>
@@ -131,11 +160,12 @@
 </section>
 
 <footer>
+  <div class="foot-ghost">Josefov</div>
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="foot-brand"><img src="images/logo.jpg" alt="" style="width:34px;height:34px;border-radius:50%;"> Květiny na rohu</div>
-        <p style="max-width:280px;font-size:.85rem;color:#a89fb0;">Rodinné květinářství na rohu náměstí B. Němcové v jaroměřském Josefově.</p>
+        <div class="foot-brand"><img src="images/logo.jpg" alt=""> Květiny na rohu</div>
+        <p style="max-width:280px;font-family:'Space Mono',monospace;font-size:.78rem;line-height:1.6;color:rgba(241,234,217,.5);">Rodinné květinářství na rohu náměstí B. Němcové v jaroměřském Josefově.</p>
       </div>
       <div class="foot-col">
         <h4>Stránky</h4>
@@ -160,8 +190,9 @@
   </div>
 </footer>
 
-<a href="tel:+420605584163" class="float-order">📞 Zavolat</a>
+<a href="tel:+420605584163" class="float-order">📞</a>
 
+</main>
 <script src="js/main.js"></script>
 </body>
 </html>

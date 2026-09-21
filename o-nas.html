@@ -7,46 +7,66 @@
 <meta name="description" content="Rodinné květinářství Hana Malá na rohu náměstí B. Němcové v jaroměřském Josefově — od roku 1996.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<canvas id="petals"></canvas>
-
-<header id="site-header">
-  <a href="index.html" class="brand"><img src="images/logo.jpg" alt="Květiny na rohu logo"> Květiny <span style="opacity:.65;font-size:.7em;margin-left:4px;">na rohu</span></a>
+<header id="site-nav">
+  <a href="index.html" class="nav-mark"><img src="images/logo.jpg" alt="Květiny na rohu logo"></a>
+  <div class="nav-word">Květiny na rohu — Josefov</div>
   <nav>
     <a href="index.html">Domů</a>
     <a href="o-nas.html" class="active">O nás</a>
-    <a href="tvorba.html">Naše tvorba</a>
+    <a href="tvorba.html">Tvorba</a>
     <a href="recenze.html">Recenze</a>
     <a href="kontakt.html">Kontakt</a>
   </nav>
-  <a href="tel:+420605584163" class="nav-cta">Zavolat</a>
+  <a href="tel:+420605584163" class="nav-call">📞</a>
 </header>
+
+<div id="site-nav-mobile">
+  <a href="index.html" class="m-brand"><img src="images/logo.jpg" alt=""> Květiny na rohu</a>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="tel:+420605584163" class="m-call">📞</a>
+    <label for="mnav-toggle" class="m-burger"><span></span><span></span><span></span></label>
+  </div>
+</div>
+<input type="checkbox" id="mnav-toggle">
+<div id="mobile-drop">
+  <a href="index.html">Domů</a>
+  <a href="o-nas.html" class="active">O nás</a>
+  <a href="tvorba.html">Naše tvorba</a>
+  <a href="recenze.html">Recenze</a>
+  <a href="kontakt.html">Kontakt</a>
+</div>
+
+<main>
 
 <section class="page-hero">
   <div class="wrap">
-    <div class="eyebrow">O nás</div>
+    <div class="index-label">Vzorek č. 02 · O nás</div>
     <h1>Kousek Josefova,<br>který voní květinami</h1>
     <p>Rodinné květinářství na rohu náměstí B. Němcové — proto Květiny na rohu.</p>
     <div class="crumbs"><a href="index.html">Domů</a><span>/</span>O nás</div>
   </div>
 </section>
 
-<section class="about">
+<section class="entry" style="border-top:none;">
   <div class="wrap about-grid">
-    <div class="about-photo reveal">
-      <img src="images/photo_jul18_2023.jpg" alt="Výloha Květiny na rohu v Josefově">
+    <div class="reveal">
+      <div class="specimen">
+        <div class="specimen-photo"><img src="images/photo_jul18_2023.jpg" alt="Výloha Květiny na rohu v Josefově"></div>
+        <div class="specimen-tag"><span>Provozovna · <b>nám. B. Němcové</b></span><span>Josefov</span></div>
+      </div>
     </div>
     <div class="about-text reveal">
-      <div class="tag">Náš příběh</div>
+      <div class="index-label">Náš příběh</div>
       <h2 class="sec-title">Vážeme kytice s citem už od roku 1996</h2>
       <p>Najdete nás přímo na rohu náměstí B. Němcové v jaroměřském Josefově — proto Květiny na rohu. Vážeme kytice s citem pro kombinaci barev a tvarů, ať už jde o malé přání pro radost, svatební výzdobu nebo smuteční vazbu.</p>
       <p>Nabízíme čerstvé řezané i hrnkové květiny, sezónní dekorace a vazbu na počkání — bez objednávání přes e-shop, stačí zajít nebo zavolat. Poradíme s výběrem i s tím, co se zrovna sezónně hodí.</p>
       <div class="facts reveal-stagger">
-        <div class="fact"><b>od 1996</b><span>tradice na jednom místě*</span></div>
+        <div class="fact"><b>1996</b><span>na jednom místě od*</span></div>
         <div class="fact"><b>4,5 / 5</b><span>hodnocení na Google (17 recenzí)</span></div>
         <div class="fact"><b>6 dní</b><span>otevřeno v týdnu</span></div>
         <div class="fact"><b>Na míru</b><span>svatby, smutek, dekorace</span></div>
@@ -55,23 +75,23 @@
   </div>
 </section>
 
-<section class="gallery">
+<section class="entry">
   <div class="wrap">
-    <div class="tag reveal">Jak to u nás chodí</div>
+    <div class="index-label reveal">Jak to u nás chodí</div>
     <h2 class="sec-title reveal">Od nápadu ke kytici ve třech krocích</h2>
     <div class="steps reveal-stagger">
       <div class="step">
-        <div class="num">01</div>
+        <div class="num">01 / 03</div>
         <h3>Zajdete nebo zavoláte</h3>
         <p>Stačí přijít na roh náměstí B. Němcové, nebo si kytici domluvit telefonicky předem — na 605 584 163.</p>
       </div>
       <div class="step">
-        <div class="num">02</div>
+        <div class="num">02 / 03</div>
         <h3>Vybereme a poradíme</h3>
         <p>Podle příležitosti i sezóny poradíme s výběrem květin, barev a stylu vazby — na míru vašemu přání.</p>
       </div>
       <div class="step">
-        <div class="num">03</div>
+        <div class="num">03 / 03</div>
         <h3>Vážeme na počkání</h3>
         <p>Kytici, věnec nebo dekoraci uvážeme přímo na místě — obvykle si ji odnesete rovnou s sebou.</p>
       </div>
@@ -79,20 +99,21 @@
   </div>
 </section>
 
-<section class="reviews">
+<section class="entry reviews" style="border-top:none;">
   <div class="wrap" style="text-align:center;">
-    <div class="tag reveal" style="justify-content:center;">Než dorazíte</div>
+    <div class="index-label reveal" style="justify-content:center;">Než dorazíte</div>
     <h2 class="sec-title reveal" style="margin:0 auto;">Podívejte se, co všechno umíme</h2>
-    <div style="margin-top:34px;" class="reveal"><a href="tvorba.html" class="btn btn-solid" style="background:#fff;color:var(--lavender-dark);border-color:#fff;">Prohlédnout galerii tvorby →</a></div>
+    <div style="margin-top:32px;" class="reveal"><a href="tvorba.html" class="btn btn-invert">Prohlédnout galerii tvorby →</a></div>
   </div>
 </section>
 
 <footer>
+  <div class="foot-ghost">Josefov</div>
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="foot-brand"><img src="images/logo.jpg" alt="" style="width:34px;height:34px;border-radius:50%;"> Květiny na rohu</div>
-        <p style="max-width:280px;font-size:.85rem;color:#a89fb0;">Rodinné květinářství na rohu náměstí B. Němcové v jaroměřském Josefově.</p>
+        <div class="foot-brand"><img src="images/logo.jpg" alt=""> Květiny na rohu</div>
+        <p style="max-width:280px;font-family:'Space Mono',monospace;font-size:.78rem;line-height:1.6;color:rgba(241,234,217,.5);">Rodinné květinářství na rohu náměstí B. Němcové v jaroměřském Josefově.</p>
       </div>
       <div class="foot-col">
         <h4>Stránky</h4>
@@ -117,8 +138,9 @@
   </div>
 </footer>
 
-<a href="tel:+420605584163" class="float-order">📞 Zavolat</a>
+<a href="tel:+420605584163" class="float-order">📞</a>
 
+</main>
 <script src="js/main.js"></script>
 </body>
 </html>
