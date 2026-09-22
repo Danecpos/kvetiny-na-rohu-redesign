@@ -29,7 +29,6 @@ if (mnavToggle) {
   if (!svg) return;
 
   const signature = document.getElementById('rf-signature');
-  const replayBtn = document.getElementById('rf-replay');
   const section = document.querySelector('.rose-feature');
   const EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
@@ -81,7 +80,6 @@ if (mnavToggle) {
   function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
 
   let token = 0;
-  let firstCycleDone = false;
 
   async function runCycle(myToken) {
     resetInstant();
@@ -106,11 +104,6 @@ if (mnavToggle) {
 
     signature.classList.add('show');
 
-    if (!firstCycleDone) {
-      firstCycleDone = true;
-      replayBtn.classList.add('visible');
-    }
-
     await wait(2000);
     if (myToken !== token) return;
 
@@ -129,12 +122,9 @@ if (mnavToggle) {
     runCycle(myToken);
   }
 
-  replayBtn.addEventListener('click', startFresh);
-
   if (reduceMotion) {
     allPaths.forEach(el => { el.style.strokeDashoffset = '0'; });
     signature.classList.add('show');
-    replayBtn.classList.add('visible');
     return;
   }
 
