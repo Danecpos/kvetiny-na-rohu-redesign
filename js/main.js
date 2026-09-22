@@ -22,3 +22,21 @@ if (mnavToggle) {
     a.addEventListener('click', () => { mnavToggle.checked = false; });
   });
 }
+
+// line-drawing flower animation — plays once, when scrolled into view
+const drawFlowers = document.querySelectorAll('.draw-rose');
+if (drawFlowers.length) {
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    drawFlowers.forEach(el => io.observe(el));
+  } else {
+    drawFlowers.forEach(el => el.classList.add('in-view'));
+  }
+}
