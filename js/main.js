@@ -2,6 +2,7 @@
 const tabs = document.querySelectorAll('.filter-tabs button');
 if (tabs.length) {
   const figures = document.querySelectorAll('.grid figure');
+  const gallerySection = document.querySelector('.filter-tabs').closest('section');
   tabs.forEach(btn => {
     btn.addEventListener('click', () => {
       tabs.forEach(b => b.classList.remove('active'));
@@ -11,6 +12,7 @@ if (tabs.length) {
         const show = cat === 'vse' || fig.dataset.cat === cat;
         fig.classList.toggle('hide', !show);
       });
+      if (gallerySection) gallerySection.classList.toggle('mood-dark', cat === 'smutecni');
     });
   });
 }
