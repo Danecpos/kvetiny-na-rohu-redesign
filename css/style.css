@@ -190,14 +190,14 @@ section{padding:72px 0;}
 /* ---------------- gallery ---------------- */
 .gallery{background:var(--cream2);}
 .grid{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.grid figure{border-radius:8px;overflow:hidden;background:var(--card);border:1px solid var(--line);}
+.grid figure{border-radius:8px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:background-color .5s ease,border-color .5s ease;}
 .grid figure.wide{grid-column:span 2;}
 .grid figure.hide{display:none;}
 .photo-box{aspect-ratio:4/5;overflow:hidden;}
 .grid figure.wide .photo-box{aspect-ratio:16/10;}
 .photo-box img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.4,0,.2,1);}
 .grid figure:hover .photo-box img{transform:scale(1.06);}
-figcaption{padding:10px 12px 12px;font-size:.86rem;color:var(--ink-soft);transition:color .3s ease;}
+figcaption{padding:10px 12px 12px;font-size:.86rem;color:var(--ink-soft);transition:color .3s ease,background-color .5s ease;}
 .grid figure:hover figcaption{color:var(--green-dark);}
 @media (prefers-reduced-motion:reduce){
   .photo-box img{transition:none;}
@@ -210,6 +210,19 @@ figcaption{padding:10px 12px 12px;font-size:.86rem;color:var(--ink-soft);transit
 }
 .filter-tabs button:hover{border-color:var(--green);color:var(--green-dark);}
 .filter-tabs button.active{background:var(--green);border-color:var(--green);color:#fff;}
+
+/* ---------------- gallery mood: darkens when "Smuteční vazba" filter is active ---------------- */
+.gallery-shell{transition:background-color .6s ease;}
+.gallery-shell.mood-dark{background:#1c1c1a;}
+.gallery-shell.mood-dark .filter-tabs button{background:#2a2a28;border-color:#43423e;color:#cfcac0;}
+.gallery-shell.mood-dark .filter-tabs button:hover{border-color:var(--pink);color:#fff;}
+.gallery-shell.mood-dark .filter-tabs button.active{background:var(--green-dark);border-color:var(--green-dark);color:#fff;}
+.gallery-shell.mood-dark .grid figure{background:#242422;border-color:#3a3936;}
+.gallery-shell.mood-dark figcaption{color:#cfcac0;}
+.gallery-shell.mood-dark .grid figure:hover figcaption{color:#fff;}
+@media (prefers-reduced-motion:reduce){
+  .gallery-shell,.grid figure,figcaption{transition:none;}
+}
 
 /* ---------------- process steps ---------------- */
 .steps{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
