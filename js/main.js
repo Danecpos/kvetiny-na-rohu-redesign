@@ -143,3 +143,75 @@ if (mnavToggle) {
     startFresh();
   }
 })();
+
+// scroll reveal — fade + rise for section content, staggered per group
+(function () {
+  const items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    items.forEach(el => el.classList.add('in-view'));
+    return;
+  }
+
+  // stagger delay based on position among reveal siblings sharing the same parent
+  const counts = new Map();
+  items.forEach(el => {
+    const parent = el.parentElement;
+    const i = counts.get(parent) || 0;
+    el.style.transitionDelay = (i * 100) + 'ms';
+    counts.set(parent, i + 1);
+  });
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach(el => io.observe(el));
+})();
+
+// mini flower divider — small line-drawing sprig between reviews and contact
+(function () {
+  const svg = document.getElementById('md-svg');
+  if (!svg) return;
+
+  const stem = svg.querySelector('[data-group="stem"]');
+  const leaf = svg.querySelector('[data-group="leaf"]');
+  const EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduceMotion) return;
+
+  function draw(el, duration, delay) {
+    el.animate(
+      [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
+      { duration, delay, easing: EASE, fill: 'forwards' }
+    );
+  }
+
+  function play() {
+    draw(stem, 900, 0);
+    draw(leaf, 500, 550);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          play();
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.6 });
+    io.observe(svg);
+  } else {
+    play();
+  }
+})();
