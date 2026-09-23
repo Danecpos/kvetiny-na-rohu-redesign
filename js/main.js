@@ -1,3 +1,11 @@
+// register GSAP plugins (loaded via CDN before this file)
+if (window.gsap) {
+  if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+  if (window.DrawSVGPlugin) gsap.registerPlugin(DrawSVGPlugin);
+}
+
+const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // gallery filter tabs (present only on tvorba.html)
 const tabs = document.querySelectorAll('.filter-tabs button');
 if (tabs.length) {
@@ -25,14 +33,13 @@ if (mnavToggle) {
   });
 }
 
-// rose-feature — line-drawing rose showcase (homepage only)
+// rose-feature — line-drawing rose showcase (homepage only), powered by GSAP DrawSVGPlugin
 (function () {
   const svg = document.getElementById('rf-svg');
-  if (!svg) return;
+  if (!svg || !window.gsap || !window.DrawSVGPlugin) return;
 
   const signature = document.getElementById('rf-signature');
   const section = document.querySelector('.rose-feature');
-  const EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
 
   const stem  = svg.querySelectorAll('[data-group="stem"]');
   const leaf  = svg.querySelectorAll('[data-group="leaf"]');
@@ -41,108 +48,54 @@ if (mnavToggle) {
   const inner = svg.querySelectorAll('[data-group="inner"]');
   const bud   = svg.querySelectorAll('[data-group="bud"]');
   const allPaths = svg.querySelectorAll('path');
-
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const jitter = (base, amt) => base + (Math.random() * 2 - 1) * amt;
-
-  function draw(el, duration, delay) {
-    return el.animate(
-      [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
-      { duration, delay, easing: EASE, fill: 'forwards' }
-    ).finished.catch(() => {});
-  }
-
-  function stagger(group, duration, gap, startDelay) {
-    const proms = [];
-    group.forEach((el, i) => {
-      proms.push(draw(el, jitter(duration, duration * 0.08), startDelay + i * gap));
-    });
-    return Promise.all(proms);
-  }
-
-  function resetInstant() {
-    allPaths.forEach(el => {
-      el.getAnimations().forEach(a => a.cancel());
-      el.style.strokeDashoffset = '1';
-    });
-    signature.classList.remove('show');
-    svg.style.transition = 'none';
-    svg.style.opacity = '1';
-    void svg.offsetHeight;
-  }
-
-  function fadeOut() {
-    return new Promise(resolve => {
-      svg.style.transition = `opacity 1300ms ${EASE}`;
-      requestAnimationFrame(() => { svg.style.opacity = '0'; });
-      setTimeout(resolve, 1300);
-    });
-  }
-
-  function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-  let token = 0;
-
-  async function runCycle(myToken) {
-    resetInstant();
-
-    await stagger(stem, 1500, 0, 0);
-    if (myToken !== token) return;
-
-    await stagger(leaf, 720, 170, 60);
-    if (myToken !== token) return;
-
-    await stagger(outer, 920, 190, 40);
-    if (myToken !== token) return;
-
-    await stagger(mid, 760, 150, 60);
-    if (myToken !== token) return;
-
-    await stagger(inner, 620, 130, 40);
-    if (myToken !== token) return;
-
-    await stagger(bud, 950, 0, 20);
-    if (myToken !== token) return;
-
-    signature.classList.add('show');
-
-    await wait(2000);
-    if (myToken !== token) return;
-
-    await fadeOut();
-    if (myToken !== token) return;
-
-    await wait(900);
-    if (myToken !== token) return;
-
-    runCycle(myToken);
-  }
-
-  function startFresh() {
-    token += 1;
-    const myToken = token;
-    runCycle(myToken);
-  }
+  const EASE = 'power2.inOut';
 
   if (reduceMotion) {
-    allPaths.forEach(el => { el.style.strokeDashoffset = '0'; });
+    gsap.set(allPaths, { drawSVG: '100%' });
     signature.classList.add('show');
     return;
   }
 
-  // start the loop only once the section is actually in view
-  if ('IntersectionObserver' in window && section) {
-    const io = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          startFresh();
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.35 });
-    io.observe(section);
+  gsap.set(allPaths, { drawSVG: '0%' });
+
+  function runCycle() {
+    gsap.set(allPaths, { drawSVG: '0%' });
+    gsap.set(svg, { opacity: 1 });
+    signature.classList.remove('show');
+
+    const tl = gsap.timeline({
+      onComplete() {
+        signature.classList.add('show');
+        gsap.delayedCall(2, () => {
+          gsap.to(svg, {
+            opacity: 0,
+            duration: 1.3,
+            ease: 'power1.inOut',
+            onComplete() {
+              gsap.delayedCall(0.9, runCycle);
+            }
+          });
+        });
+      }
+    });
+
+    tl.to(stem,  { drawSVG: '100%', duration: 1.5,  ease: EASE })
+      .to(leaf,  { drawSVG: '100%', duration: 0.72, ease: EASE, stagger: 0.17 }, '+=0.06')
+      .to(outer, { drawSVG: '100%', duration: 0.92, ease: EASE, stagger: 0.19 }, '+=0.04')
+      .to(mid,   { drawSVG: '100%', duration: 0.76, ease: EASE, stagger: 0.15 }, '+=0.06')
+      .to(inner, { drawSVG: '100%', duration: 0.62, ease: EASE, stagger: 0.13 }, '+=0.04')
+      .to(bud,   { drawSVG: '100%', duration: 0.95, ease: EASE }, '+=0.02');
+  }
+
+  if (window.ScrollTrigger && section) {
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top 65%',
+      once: true,
+      onEnter: runCycle
+    });
   } else {
-    startFresh();
+    runCycle();
   }
 })();
 
@@ -150,8 +103,6 @@ if (mnavToggle) {
 (function () {
   const items = document.querySelectorAll('.reveal');
   if (!items.length) return;
-
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
     items.forEach(el => el.classList.add('in-view'));
@@ -179,72 +130,82 @@ if (mnavToggle) {
   items.forEach(el => io.observe(el));
 })();
 
-// star pop-in — rating stars pop in one by one on scroll
+// star pop-in — rating stars bounce in one by one on scroll, powered by GSAP
 (function () {
   const starsEls = document.querySelectorAll('.stars');
   if (!starsEls.length) return;
 
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   starsEls.forEach(el => {
     const chars = el.textContent.split('');
     el.textContent = '';
-    chars.forEach((ch, i) => {
+    chars.forEach(ch => {
       const span = document.createElement('span');
       span.textContent = ch;
-      span.style.transitionDelay = (i * 90) + 'ms';
       el.appendChild(span);
     });
   });
 
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    starsEls.forEach(el => el.classList.add('in-view'));
-    return;
-  }
+  if (!window.gsap) return;
 
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.6 });
+  if (reduceMotion) return; // spans already show at full opacity/scale by default
 
-  starsEls.forEach(el => io.observe(el));
+  starsEls.forEach(el => {
+    const spans = el.querySelectorAll('span');
+    gsap.set(spans, { opacity: 0, scale: 0.3, rotate: -15, transformOrigin: '50% 50%' });
+
+    const play = () => {
+      gsap.to(spans, {
+        opacity: 1,
+        scale: 1,
+        rotate: 0,
+        duration: 0.5,
+        ease: 'back.out(2.4)',
+        stagger: 0.09
+      });
+    };
+
+    if (window.ScrollTrigger) {
+      ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: play });
+    } else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { play(); obs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.6 });
+      io.observe(el);
+    } else {
+      play();
+    }
+  });
 })();
 
-// mini flower divider — small line-drawing sprig between reviews and contact
+// mini flower divider — small line-drawing sprig between reviews and contact, GSAP DrawSVGPlugin
 (function () {
   const svg = document.getElementById('md-svg');
-  if (!svg) return;
+  if (!svg || !window.gsap || !window.DrawSVGPlugin) return;
 
   const stem = svg.querySelector('[data-group="stem"]');
   const leaf = svg.querySelector('[data-group="leaf"]');
-  const EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (reduceMotion) return;
-
-  function draw(el, duration, delay) {
-    el.animate(
-      [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }],
-      { duration, delay, easing: EASE, fill: 'forwards' }
-    );
+  if (reduceMotion) {
+    gsap.set([stem, leaf], { drawSVG: '100%' });
+    return;
   }
+
+  gsap.set([stem, leaf], { drawSVG: '0%' });
 
   function play() {
-    draw(stem, 900, 0);
-    draw(leaf, 500, 550);
+    gsap.timeline()
+      .to(stem, { drawSVG: '100%', duration: 0.9, ease: 'power2.inOut' })
+      .to(leaf, { drawSVG: '100%', duration: 0.5, ease: 'power2.inOut' }, '-=0.35');
   }
 
-  if ('IntersectionObserver' in window) {
+  if (window.ScrollTrigger) {
+    ScrollTrigger.create({ trigger: svg, start: 'top 90%', once: true, onEnter: play });
+  } else if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          play();
-          obs.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { play(); obs.unobserve(entry.target); }
       });
     }, { threshold: 0.6 });
     io.observe(svg);
