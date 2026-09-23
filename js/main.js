@@ -179,6 +179,41 @@ if (mnavToggle) {
   items.forEach(el => io.observe(el));
 })();
 
+// star pop-in — rating stars pop in one by one on scroll
+(function () {
+  const starsEls = document.querySelectorAll('.stars');
+  if (!starsEls.length) return;
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  starsEls.forEach(el => {
+    const chars = el.textContent.split('');
+    el.textContent = '';
+    chars.forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.textContent = ch;
+      span.style.transitionDelay = (i * 90) + 'ms';
+      el.appendChild(span);
+    });
+  });
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    starsEls.forEach(el => el.classList.add('in-view'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.6 });
+
+  starsEls.forEach(el => io.observe(el));
+})();
+
 // mini flower divider — small line-drawing sprig between reviews and contact
 (function () {
   const svg = document.getElementById('md-svg');
